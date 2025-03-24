@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HXA_SOFTWARE_LAB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2c874929986da22aad345fd970ad404a729567a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+182156bef0ff8e047809252e402fd4b2ba441e4b")]
 [assembly: System.Reflection.AssemblyProductAttribute("HXA_SOFTWARE_LAB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HXA_SOFTWARE_LAB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

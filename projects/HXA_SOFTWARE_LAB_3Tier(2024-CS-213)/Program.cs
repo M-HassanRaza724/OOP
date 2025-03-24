@@ -212,15 +212,5 @@ namespace HXA_SOFTWARE_LAB
                 }
             }
         }
-        
-
-       
-      
-      
-      
-
-
-
-
     }
 }
