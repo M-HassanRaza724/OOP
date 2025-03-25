@@ -28,7 +28,7 @@ namespace HXA_SOFTWARE_LAB
                     }
                     else if (Choice == 1)
                     {
-                        MUserUI.TakeLoginInput();
+                        user = MUserUI.TakeLoginInput();
                         if (MUserCRUD.AuthenticateUser(user))
                         {
                             Role = user.UserRole;
@@ -95,13 +95,13 @@ namespace HXA_SOFTWARE_LAB
 
                         switch (aChoice)
                         {
+                            //case 1:
+                            //    ConsoleUtility.PrintMessage("\tDashboard");
+                            //    break;
                             case 1:
-                                ConsoleUtility.PrintMessage("\tDashboard");
-                                break;
-                            case 2:
                                 ConsoleUtility.PrintMessage("\tOrders");
                                 break;
-                            case 3:
+                            case 2:
                                 Service service;
                                 string[] ser = new string[4];
                                 int servicesChoice = ServiceUI.ManageServicesMenu();
@@ -146,6 +146,9 @@ namespace HXA_SOFTWARE_LAB
                                     servicesChoice = ServiceUI.ManageServicesMenu();
                                 }
                                 break;
+                            case 3:
+                                ConsoleUtility.PrintMessage();
+                                break;
                             case 4:
                                 ConsoleUtility.PrintMessage();
                                 break;
@@ -164,12 +167,6 @@ namespace HXA_SOFTWARE_LAB
                             case 9:
                                 ConsoleUtility.PrintMessage();
                                 break;
-                            case 10:
-                                ConsoleUtility.PrintMessage();
-                                break;
-                            case 11:
-                                Role = null;
-                                break;
                             default:
                                 ConsoleUtility.PrintMessage("\tInvalid choice...!");
                                 break;
@@ -181,6 +178,8 @@ namespace HXA_SOFTWARE_LAB
                 }
                 else if (Role == "customer")
                 {
+                    
+                    int orderPlacing = -1;
                     int cChoice = CustomerUI.CustomerMenu(user);
                     Console.Clear();
                     while (Role.ToLower() == "customer")
@@ -191,23 +190,78 @@ namespace HXA_SOFTWARE_LAB
                                 ServiceUI.DisplayServices(ServiceCRUD.GetServices());
                                 break;
                             case 2:
+                                Order order = new Order();
+                                if (orderPlacing == -1)
+                                {
+                                    int y = 20;
+                                    order.Type = OrderUI.InputOrderService(ref y, ServiceCRUD.GetServiceTypes());
+                                    if(ConsoleUtility.inputChoice("continue", "back") == 1)
+                                        orderPlacing++;
+                                    else
+                                        orderPlacing--;
+                                }
+                                else if (orderPlacing == 1)
+                                {
+                                    order.Description = OrderUI.InputOrderDescription();
+                                    if (ConsoleUtility.inputChoice("continue", "back") == 1)
+                                        orderPlacing++;
+                                    else
+                                        orderPlacing--;
+                                }
+                                else if (orderPlacing == 2)
+                                {
+                                    order.Platform = OrderUI.InputOrderPlatform();
+                                    if (ConsoleUtility.inputChoice("continue", "back") == 1)
+                                        orderPlacing++;
+                                    else
+                                        orderPlacing--;
+                                }
+                                else if (orderPlacing == 3)
+                                {
+                                    order.PBudget = OrderUI.InputOrderBudget();
+                                    if (ConsoleUtility.inputChoice("continue", "back") == 1)
+                                        orderPlacing++;
+                                    else
+                                        orderPlacing--;
+                                }
+                                else if (orderPlacing == 4)
+                                {
+                                    order.Time = $"{OrderUI.InputOrderTimeline()}";
+                                    if (ConsoleUtility.inputChoice("submit", "back") == 1)
+                                        orderPlacing++;
+                                    else
+                                        orderPlacing--;
+                                }
+                                else if (orderPlacing == 5)
+                                {
+                                    if (OrderUI.InputOrderSubmitProposal())
+                                    {
+                                        order.Status = "Pending";
+                                        OrderCRUD.AddOrder(order);
+                                        ConsoleUtility.PrintMessage("\n\n\nCongradulations... \n\nYour request has been submitted\n\nPress any key to go to Main Menu");
+                                    }
+                                    else
+                                    {
+                                        ConsoleUtility.PrintMessage("\n\n\nYour request has been cancelled\n\nPress any key to go to Main Menu");
+                                    }
+                                    orderPlacing = -1;
+                                }
                                 break;
                             case 3:
+                                OrderUI.PrintOrderBook(OrderCRUD.GetOrdersBYEmail(user.Email));
                                 break;
                             case 4:
-                                break;
-                            case 5:
-                                break;
-                            case 6:
                                 Role = null;
                                 break;
+                            //case 5:
+                                //break;
                             default:
                                 ConsoleUtility.PrintMessage("Invalid choice...!");
                                 break;
                         }
                         Console.ReadKey();
                         Console.Clear();
-                        if (cChoice != 6) cChoice = CustomerUI.CustomerMenu(user);
+                        if (cChoice != 4) cChoice = CustomerUI.CustomerMenu(user);
                     }
                 }
             }

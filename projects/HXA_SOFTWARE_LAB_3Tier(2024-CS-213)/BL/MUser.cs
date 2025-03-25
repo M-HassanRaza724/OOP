@@ -12,10 +12,10 @@ namespace HXA_SOFTWARE_LAB.BL
 {
     public class MUser
     {
-        public string Email;
-        public string Username;
-        public string Password;
-        public string UserRole;
+        public string Email { get; set; }
+        public string Username { get ; set ;}
+        public string Password { get ; set ;}
+        public string UserRole { get ; set ;}
 
         public MUser(string username, string email, string password)
         {
@@ -24,8 +24,8 @@ namespace HXA_SOFTWARE_LAB.BL
             Password = password;
             UserRole = "customer";
         }
-        public MUser() { }
 
+        public MUser() { }
 
     }
 }

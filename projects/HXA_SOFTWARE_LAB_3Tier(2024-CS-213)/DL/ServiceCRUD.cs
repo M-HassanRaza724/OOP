@@ -8,6 +8,17 @@ namespace HXA_SOFTWARE_LAB.DL
 {
     public static class ServiceCRUD
     {
+        public static List<string> GetServiceTypes()
+        {
+            List<string> serviceTypes = new List<string>();
+            string query = "SELECT DISTINCT type FROM Services";
+            var reader = DatabaseHelper.Instance.getData(query);
+            while (reader.Read())
+            {
+                serviceTypes.Add($"{reader["type"]}");
+            }
+            return serviceTypes;
+        }
         public static List<Service> GetServices()
         {
             List<Service> services = new List<Service>();
@@ -15,7 +26,7 @@ namespace HXA_SOFTWARE_LAB.DL
             var reader = DatabaseHelper.Instance.getData(query);
             while (reader.Read())
             {
-                services.Add(new Service($"{reader["Type"]}", $"{reader["Description"]}", $"{reader["Technologies"]}", $"{reader["Services"]}"));
+                services.Add(new Service($"{reader["Type"]}", $"{reader["Description"]}", $"{reader["Technologies"]}", $"{reader["Services_involved"]}"));
             }
             return services;
         }
@@ -42,7 +53,7 @@ namespace HXA_SOFTWARE_LAB.DL
             var reader = DatabaseHelper.Instance.getData(query);
             if (reader.Read())
             {
-                return new Service($"{reader["Type"]}", $"{reader["Description"]}", $"{reader["Technologies"]}", $"{reader["Services"]}");
+                return new Service($"{reader["Type"]}", $"{reader["Description"]}", $"{reader["Technologies"]}", $"{reader["Services_involved"]}");
             }
             return null;
         }

@@ -49,9 +49,9 @@ namespace HXA_SOFTWARE_LAB.DL
             {
                 if (u.Password == $"{reader["Password"]}") ;
                 {
-                    if ($"{reader["UserRole"]}" == "1")
-                        u.UserRole = 1;
-                    u.Username = $"{reader["UserName"]}";
+                    if ($"{reader["role"]}" == "admin")
+                        u.UserRole = "admin";
+                    u.Username = $"{reader["Username"]}";
                     return true;
                 }
             }

@@ -10,18 +10,20 @@ namespace HXA_SOFTWARE_LAB.BL
 
     public class Order
     {
-        public int OrdererId { get; set; }
+        public string OrderId { get; set; }
         public string Type { get; set; }
         public string Platform { get; set; }
-        public int PBudget { get; set; }
+        public string PBudget { get; set; }
         public string Time { get; set; }
         public string Description { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; }
+        public enum OrderStatus { Uncompleted, Completed }
         public double RevenueGenerated { get; set; }
         public string Title { get; set; }
-        public Order(int ordererId, string type, string platform, int pBudget, string time, string description, bool status, double revenueGenerated, string title = null)
+
+        public Order(string orderId, string type, string platform, string pBudget, string time, string description, string status, double revenueGenerated, string title = null)
         {
-            OrdererId = ordererId;
+            OrderId = orderId;
             Type = type;
             Platform = platform;
             PBudget = pBudget;
@@ -31,7 +33,45 @@ namespace HXA_SOFTWARE_LAB.BL
             RevenueGenerated = revenueGenerated;
             Title = title;
         }
+     
         public Order() { }
+        public string GetOrderId()
+        {
+            return OrderId;
+        }
+        public string GetOrdererEmail()
+        {
+            return OrderId.Split('_')[1];
+        }
+
+        public string GetType()
+        {
+            return Type;
+        }
+        public string GetPlatform()
+        {
+            return Platform;
+        }
+        public string GetPBudget()
+        {
+            return PBudget;
+        }
+        public string GetTime()
+        {
+            return Time;
+        }
+        public string GetDescription()
+        {
+            return Description;
+        }
+        public string GetStatus()
+        {
+            return Status;
+        }
+        public double GetRevenueGenerated()
+        {
+            return RevenueGenerated;
+        }
     }
    
 }

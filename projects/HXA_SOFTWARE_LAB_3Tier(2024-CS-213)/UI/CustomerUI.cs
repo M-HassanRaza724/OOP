@@ -16,9 +16,8 @@ namespace HXA_SOFTWARE_LAB.UI
             Console.WriteLine("\t1. Our Services.");
             Console.WriteLine("\t2. Place Order.");
             Console.WriteLine("\t3. Order Book.");
-            Console.WriteLine("\t4. Our Recent Top Projects.");
-            Console.WriteLine("\t5. Client Reviews.");
-            Console.WriteLine("\t6. SignOut.");
+            //Console.WriteLine("\t4. Our Recent Top Projects.");
+            Console.WriteLine("\t4. SignOut.");
             Console.Write("\tEnter your choice: ");
             int choice = int.Parse(Console.ReadLine());
             return choice;
